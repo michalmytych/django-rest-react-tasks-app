@@ -11,18 +11,27 @@ from .permissions import IsOwnerOrReadOnly
 
 
 class UserList(generics.ListAPIView):
+    """
+        Class for viewing User objects queryset.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
 
 class UserDetail(generics.RetrieveAPIView):
+    """
+        Class for viewing single User object data.
+    """
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsAdminUser]
 
 
 class ToDoList(generics.ListCreateAPIView):
+    """
+        Class for viewing ThingToDo objects queryset.
+    """
     queryset = ThingToDo.objects.all()
     serializer_class = ThingToDoSerializer
     permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
@@ -34,6 +43,9 @@ class ToDoList(generics.ListCreateAPIView):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly])
 def todo_detail(request, pk):
+    """
+        Function for getting, editing and deleting single ThingToDo object.
+    """
     try:
         todo = ThingToDo.objects.get(id=pk)
     except ThingToDo.DoesNotExist:

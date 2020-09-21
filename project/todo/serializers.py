@@ -7,6 +7,8 @@ class ThingToDoSerializer(serializers.ModelSerializer):
     """
         Meta class to serialize ThingToDo model for JSON api.
     """
+    user = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = ThingToDo
         fields = (

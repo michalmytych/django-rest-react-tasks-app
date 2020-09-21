@@ -1,42 +1,38 @@
 from django.contrib.auth.models import User
 
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework import status, generics
 from rest_framework.response import Response
 
 from .models import ThingToDo
 from .serializers import ThingToDoSerializer, UserSerializer
+from .permissions import IsOwnerOrReadOnly
 
 
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
 
 
 class UserDetail(generics.RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    permission_classes = [IsAdminUser]
 
 
-@api_view(['GET', 'POST'])
-@permission_classes([IsAuthenticatedOrReadOnly])
-def todos_list(request):
-    if request.method == 'GET':
-        todos = ThingToDo.objects.all()
-        serializer = ThingToDoSerializer(todos, many=True)
-        return Response(serializer.data)
+class ToDoList(generics.ListCreateAPIView):
+    queryset = ThingToDo.objects.all()
+    serializer_class = ThingToDoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
-    elif request.method == 'POST':
-        serializer = ThingToDoSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-@permission_classes([IsAuthenticatedOrReadOnly])
+@permission_classes([IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly])
 def todo_detail(request, pk):
     try:
         todo = ThingToDo.objects.get(id=pk)

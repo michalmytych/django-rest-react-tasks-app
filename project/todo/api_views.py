@@ -1,12 +1,26 @@
-from rest_framework import status
+from django.contrib.auth.models import User
+
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework import status, generics
 from rest_framework.response import Response
-from rest_framework.decorators import api_view
 
 from .models import ThingToDo
-from .serializers import ThingToDoSerializer
+from .serializers import ThingToDoSerializer, UserSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 @api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def todos_list(request):
     if request.method == 'GET':
         todos = ThingToDo.objects.all()
@@ -22,6 +36,7 @@ def todos_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([IsAuthenticatedOrReadOnly])
 def todo_detail(request, pk):
     try:
         todo = ThingToDo.objects.get(id=pk)
@@ -36,7 +51,7 @@ def todo_detail(request, pk):
         serializer = ThingToDoSerializer(instance=todo, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data)        # or 200 OK (but it's the same thing I guess)
+            return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
@@ -44,15 +59,3 @@ def todo_detail(request, pk):
         todo = ThingToDo.objects.get(id=pk)
         todo.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    # I maybe should handle the exception "405 Method Not Allowed response"...
-
-
-"""
-    *** TO-DO ***
-    
-    1. Add views for:
-        * todos of specific project 
-        * all projects
-        * specific project
-"""

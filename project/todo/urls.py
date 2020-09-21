@@ -9,11 +9,7 @@ urlpatterns = [
     # api views as paths():
     path('todos-list/', api_views.todos_list, name="todos_list"),
     path('todo-detail/<int:pk>/', api_views.todo_detail, name="todo_detail"),
+    # api user views
+    path('users/', api_views.UserList.as_view()),
+    path('users/<int:pk>/', api_views.UserDetail.as_view()),
 ]
-
-
-"""
-    *** TO-DO ***
-    
-    1. Learn the difference between url() and path() functions.
-"""

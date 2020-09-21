@@ -1,6 +1,19 @@
 from django.conf.urls import url
-from . import views
+from django.urls import path
+from . import views, api_views
+
 
 urlpatterns = [
-    url('', views.index, name='index'),
+    # just a test view as url():
+    url('test/', views.test, name='test'),
+    # api views as paths():
+    path('todos-list/', api_views.todos_list, name="todos_list"),
+    path('todo-detail/<int:pk>/', api_views.todo_detail, name="todo_detail"),
 ]
+
+
+"""
+    *** TO-DO ***
+    
+    1. Learn the difference between url() and path() functions.
+"""

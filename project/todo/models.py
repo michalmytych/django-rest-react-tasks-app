@@ -15,7 +15,7 @@ class ThingToDo(models.Model):
     deadline = models.DateTimeField()
     done = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
     project = models.ForeignKey('ProjectToDo', on_delete=models.CASCADE)
 
     def __str__(self):

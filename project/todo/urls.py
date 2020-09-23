@@ -1,15 +1,15 @@
-from django.conf.urls import url
-from django.urls import path
-from . import views, api_views
+from django.urls import path, include
 
+from . import api_views
+
+from rest_framework.routers import DefaultRouter
+
+
+router = DefaultRouter()
+router.register(r'todos', api_views.ThingToDoViewSet)
+router.register(r'projects', api_views.ProjectToDoViewSet)
+router.register(r'users', api_views.UserViewSet)
 
 urlpatterns = [
-    # just a test view as url():
-    url('test/', views.test, name='test'),
-    # api views as paths():
-    path('todos-list/', api_views.ToDoList.as_view(), name="todos_list"),
-    path('todo-detail/<int:pk>/', api_views.todo_detail, name="todo_detail"),
-    # api user views
-    path('users/', api_views.UserList.as_view()),
-    path('users/<int:pk>/', api_views.UserDetail.as_view()),
+    path('', include(router.urls)),
 ]

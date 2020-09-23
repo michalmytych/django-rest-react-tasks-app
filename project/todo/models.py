@@ -35,6 +35,7 @@ class ProjectToDo(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_default_project = models.BooleanField(default=False)
 
     def __str__(self):
         return f'ProjectToDo: "{self.title}"'

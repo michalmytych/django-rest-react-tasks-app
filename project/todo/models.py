@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.utils import timezone
 
 
@@ -15,7 +15,7 @@ class ThingToDo(models.Model):
     deadline = models.DateTimeField()
     done = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, related_name='todos', on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), related_name='todos', on_delete=models.CASCADE)
     project = models.ForeignKey('ProjectToDo', on_delete=models.CASCADE, blank=True)
 
     def __str__(self):
@@ -34,7 +34,7 @@ class ProjectToDo(models.Model):
     deadline = models.DateTimeField()
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
-    user = models.ForeignKey(User, related_name='projects', on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), related_name='projects', on_delete=models.CASCADE)
     is_default_project = models.BooleanField(default=False)
 
     def __str__(self):

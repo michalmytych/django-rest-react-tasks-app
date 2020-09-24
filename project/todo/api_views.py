@@ -1,18 +1,21 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from rest_framework import viewsets
+from rest_framework import permissions
 
 from .models import ThingToDo, ProjectToDo
 from .serializers import ThingToDoSerializer, UserSerializer, ProjectToDoSerializer
 from .permissions import IsOwnerOrStaff
 
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
         Class for viewing User objects queryset.
     """
-    queryset = User.objects.all()
+    queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+    permission_classes = [permissions.AllowAny]
 
 
 class ThingToDoViewSet(viewsets.ModelViewSet):
@@ -29,7 +32,7 @@ class ThingToDoViewSet(viewsets.ModelViewSet):
 
 class ProjectToDoViewSet(viewsets.ModelViewSet):
     """
-        Viewset for ProjectToDo - model for collection of ThingToDo objects.
+        Viewset for ProjectToDo - collection of ThingToDo objects.
     """
     queryset = ProjectToDo.objects.all()
     serializer_class = ProjectToDoSerializer

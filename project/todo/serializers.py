@@ -1,13 +1,15 @@
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from rest_framework import serializers
 
 from .models import ThingToDo, ProjectToDo
 
+UserModel = settings.AUTH_USER_MODEL
+
 
 class ThingToDoSerializer(serializers.ModelSerializer):
     """
-        Meta class to serialize ThingToDo model for JSON api.
+        Class to serialize ThingToDo model for JSON api.
     """
     user = serializers.ReadOnlyField(source='user.username')
 
@@ -28,8 +30,10 @@ class ThingToDoSerializer(serializers.ModelSerializer):
 
 class ProjectToDoSerializer(serializers.ModelSerializer):
     """
-        Meta class to serialize ProjectToDo model for JSON api.
+        Class to serialize ProjectToDo model for JSON api.
     """
+    user = serializers.ReadOnlyField(source='user.username')
+
     class Meta:
         model = ProjectToDo
         fields = (
@@ -46,17 +50,19 @@ class ProjectToDoSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     """
-        Meta class to serialize built-in Django User model for JSON api.
+        Class to serialize built-in Django User model for JSON api.
     """
-    todos = serializers.PrimaryKeyRelatedField(many=True, queryset=ProjectToDo.objects.all())
+    todos = serializers.ReadOnlyField()
 
     class Meta:
-        model = User
+        model = UserModel
         fields = (
             'id',
             'username',
             'email',
+            'password1',
+            'password2',
             'first_name',
             'last_name',
-            'todos'
+            'todos',
         )

@@ -1,11 +1,10 @@
 from django.contrib.auth.models import User
 
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework import viewsets
 
 from .models import ThingToDo, ProjectToDo
 from .serializers import ThingToDoSerializer, UserSerializer, ProjectToDoSerializer
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrStaff
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -14,10 +13,6 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
-    permission_classes = [IsAdminUser]
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
 
 
 class ThingToDoViewSet(viewsets.ModelViewSet):
@@ -26,7 +21,7 @@ class ThingToDoViewSet(viewsets.ModelViewSet):
     """
     queryset = ThingToDo.objects.all()
     serializer_class = ThingToDoSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrStaff]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -38,7 +33,7 @@ class ProjectToDoViewSet(viewsets.ModelViewSet):
     """
     queryset = ProjectToDo.objects.all()
     serializer_class = ProjectToDoSerializer
-    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
+    permission_classes = [IsOwnerOrStaff]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

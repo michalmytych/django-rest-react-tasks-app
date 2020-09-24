@@ -32,6 +32,7 @@ class ProjectToDoSerializer(serializers.ModelSerializer):
         Class to serialize ProjectToDo model for JSON api.
     """
     user = serializers.ReadOnlyField(source='user.username')
+    todos = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = ProjectToDo
@@ -43,6 +44,7 @@ class ProjectToDoSerializer(serializers.ModelSerializer):
             'completed',
             'created_at',
             'user',
+            'todos'
         )
         read_only_fields = ('created_at', 'id')
 

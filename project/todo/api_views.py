@@ -24,7 +24,7 @@ class ThingToDoViewSet(viewsets.ModelViewSet):
     """
     queryset = ThingToDo.objects.all()
     serializer_class = ThingToDoSerializer
-    permission_classes = [IsOwnerOrStaff]
+    permission_classes = [IsOwnerOrStaff, permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -36,7 +36,7 @@ class ProjectToDoViewSet(viewsets.ModelViewSet):
     """
     queryset = ProjectToDo.objects.all()
     serializer_class = ProjectToDoSerializer
-    permission_classes = [IsOwnerOrStaff]
+    permission_classes = [IsOwnerOrStaff, permissions.IsAuthenticatedOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

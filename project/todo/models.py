@@ -5,7 +5,7 @@ from django.utils import timezone
 
 class ThingToDo(models.Model):
     """
-        Represents a thing to be done.
+        Represents a To-Do task.
     """
     class Meta:
         db_table = 'thing_to_do'
@@ -24,7 +24,7 @@ class ThingToDo(models.Model):
 
 class ProjectToDo(models.Model):
     """
-        Represents a set of things to be done.
+        Represents a set of To-Do tasks with extra info.
     """
     class Meta:
         db_table = 'project_to_do'

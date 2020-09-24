@@ -16,7 +16,7 @@ class ThingToDo(models.Model):
     done = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(get_user_model(), related_name='todos', on_delete=models.CASCADE)
-    project = models.ForeignKey('ProjectToDo', on_delete=models.CASCADE, blank=True)
+    project = models.ForeignKey('ProjectToDo', related_name='todos', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f'ThingToDo: "{self.name}"'
@@ -35,7 +35,6 @@ class ProjectToDo(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(default=timezone.now)
     user = models.ForeignKey(get_user_model(), related_name='projects', on_delete=models.CASCADE)
-    is_default_project = models.BooleanField(default=False)
 
     def __str__(self):
         return f'ProjectToDo: "{self.title}"'

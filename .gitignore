@@ -133,3 +133,4 @@ dmypy.json
 
 # My auxiliary directories
 kopie/
+/project/dataa.json

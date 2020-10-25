@@ -131,6 +131,11 @@ dmypy.json
 # PyCharm specific
 .idea/
 
-# My auxiliary directories
+
+# Moje
+backend/venv/
 kopie/
 /project/dataa.json
+.mypy_cache/
+poradnik.txt
+*.sqlite3

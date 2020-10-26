@@ -1,6 +1,6 @@
 # Django Rest Framework & React To-Do App
 
-_Python3+, Pip3, Node.jsm, NPM required._
+_Python3+, Pip3, Node.js, npm required._
 
 __Setup:__
 ```bash

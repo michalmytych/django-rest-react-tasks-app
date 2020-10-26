@@ -8,7 +8,7 @@ __Setup:__
 # clone repository then:
 
 # install react and other required npm packages
-cd django_rest_react_task_app/frontend && npm install
+cd django-rest-react-tasks-app/frontend && npm install
 
 # create python3 virtualenv
 cd ../backend && python3 -m venv venv && source venv/bin/activate
@@ -29,10 +29,10 @@ python3 manage.py loaddata < data.json
 
 __Running apps:__
 ```bash
-# In 1st terminal instance being in "django_rest_react_task_app/frontend":
+# In 1st terminal instance being in "django-rest-react-tasks-app/frontend":
 npm start
 
-# In 2nd terminal instance being in "django_rest_react_task_app/backend":
+# In 2nd terminal instance being in "django-rest-react-tasks-app/backend":
 python3 manage.py runserver
 
 # *** React app running on localhost port 3000, Django app on 8000 ***

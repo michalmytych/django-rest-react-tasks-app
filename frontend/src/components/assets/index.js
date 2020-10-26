@@ -1,1 +1,0 @@
-export const ToDoLogo = require('./vectors/todo.svg');

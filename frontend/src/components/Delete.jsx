@@ -35,7 +35,7 @@ export default class Delete extends Component {
                 <div 
                     onClick={this.handleGoBack}
                     className="blurred-bg"></div>
-                <div className="overlay-box delete-box">
+                <div className="overlay-box delete-box with-shadow">
                     <h3>Czy napewno chcesz usunąć to zadanie?</h3>
                     <button
                         className="btn"

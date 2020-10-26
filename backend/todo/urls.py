@@ -2,12 +2,6 @@ from django.urls import path
 
 from todo import api
 
-"""
-users_list = api.UserViewSet.as_view({
-    'get': 'list',
-    'post': 'create'
-})
-"""
 
 urlpatterns = [
     path('current_user/', api.current_user),

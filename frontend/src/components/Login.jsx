@@ -30,7 +30,7 @@ export default class LoginForm extends React.Component {
         <div
             onClick={this.handleFormQuit} 
             className="blurred-bg"></div>
-        <div className="overlay-box">
+        <div className="overlay-box with-shadow">
           <form 
             onSubmit={e => this.props.handle_login(e, this.state)}>
             <h4>Logowanie</h4>

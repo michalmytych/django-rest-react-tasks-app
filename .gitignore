@@ -139,3 +139,9 @@ kopie/
 .mypy_cache/
 poradnik.txt
 *.sqlite3
+BACKEND_ISSUES.md
+FRONTEND_ISSUES.md
+frontend/node_modules/
+backend/.idea/
+backend/.vscode/
+.vscode/

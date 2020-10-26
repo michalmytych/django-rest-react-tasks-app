@@ -62,7 +62,7 @@ export default class App extends Component {
             });
         })
         .catch(error => {
-            alert("Error while: handle_login()");
+            alert("Próba logowania nie powiodła się.");
             console.log(error);
         });
     };
@@ -87,7 +87,7 @@ export default class App extends Component {
             });
         })
         .catch(error => {
-            alert("Error while: handle_signup()");
+            alert("Rejestracja nie powiodła się.");
             console.log(error);
         });
     };

@@ -58,7 +58,7 @@ class TodoForm extends Component {
         }
 
         if (todo.name.length === 0 || todo.description.length === 0 || todo.name.length === 0){
-            alert("Formularz został niepoprawnie wypełniony. Nie zapisano żadnych zmian.");
+            alert("Formularz został wypełniony niepoprawnie. Nie zapisano żadnych zmian.");
             this.exitForm();
         }
 
@@ -118,7 +118,7 @@ class TodoForm extends Component {
                 <div
                     onClick={this.exitForm} 
                     className="blurred-bg"></div>
-                <div className="overlay-box">
+                <div className="overlay-box with-shadow">
                     <form onSubmit={event => this.handle_submit(event, this.state)}>
                         <button 
                             className="btn"

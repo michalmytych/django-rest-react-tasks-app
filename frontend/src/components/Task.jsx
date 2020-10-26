@@ -47,7 +47,6 @@ export default class Task extends Component {
     }
 
     render() {
-        console.log(this.state.full_descrpt_viewed);
         return (
             <div key={this.props.todo.id}>
                 <h4

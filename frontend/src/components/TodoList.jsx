@@ -5,6 +5,7 @@ import Filter from './Filter';
 import Sort from './Sort';
 import Task from './Task';
 import Delete from './Delete';
+import { ToDoLogo } from './assets';
 
   
 
@@ -92,7 +93,10 @@ class TodoList extends Component {
                 }
 
 
-                <h1>To-Do List</h1>
+                <h1>
+                    <img className="logo" src={ToDoLogo} alt='Logo aplikacji ToDo.'></img>
+                    To-Do List
+                </h1>
                 <Router>
                     <Route path={"/new"}>
                         <TodoForm 
@@ -107,16 +111,16 @@ class TodoList extends Component {
                     </Route>
 
                     <Route path="/">
-                        <ul>
-                            <li>
+                        <ul className='crud-nav-list with-shadow'>
+                            <li className='crud-nav-elem'>
                                 <Link
                                     className="btn" 
                                     to="/new">Dodaj</Link>
                             </li>
-                            <li>
+                            <li className='crud-nav-elem'>
                                 <Filter setState={p=>{this.setState(p)}} />
                             </li>                                
-                            <li>
+                            <li className='crud-nav-elem'>
                                 <Sort setState={p=>{this.setState(p)}} />
                             </li>
                             </ul>
@@ -130,7 +134,7 @@ class TodoList extends Component {
                              .sort((a,b) => this.sortTodos(a,b,this.state.todos_sort_order))
                             .map(todo => (
                                 <li 
-                                    className="todo-task-box"
+                                    className="todo-task-box with-shadow"
                                     key={todo.id}>
                                     <Task 
                                         todo={todo}

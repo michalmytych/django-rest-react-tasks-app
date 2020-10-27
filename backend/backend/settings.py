@@ -1,10 +1,16 @@
 from pathlib import Path
 import datetime
+from backend import secrets
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'ws0*)3i4d)!&e@g*)&gs74cg5qrlcia8ncn-4rq1f@m@71hmol'
+# SECRET_KEY = 'ws0*)3i4d)!&e@g*)&gs74cg5qrlcia8ncn-4rq1f@m@71hmol'
+
+if secrets.generated_secret_key:
+    SECRET_KEY = secrets.generated_secret_key
+else:
+    print("Django secret key isn't specified.")
 
 DEBUG = True
 

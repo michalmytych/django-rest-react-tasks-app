@@ -10,7 +10,7 @@ cd django-rest-react-tasks-app
 
 # and
 
-bash setup.sh
+bash setup.sh   # you may need to : chmod +x setup.sh before executing it 
 
 # If you decide to use sample data:
 # Username: ernest1899

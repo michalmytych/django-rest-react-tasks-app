@@ -145,3 +145,4 @@ frontend/node_modules/
 backend/.idea/
 backend/.vscode/
 .vscode/
+secrets.py

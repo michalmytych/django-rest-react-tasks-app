@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "\e[34m>>>> Starting app setup... \e[0m"
+
 error_count=0
 
 # install react and other required npm packages

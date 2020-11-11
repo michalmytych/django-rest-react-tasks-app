@@ -17,15 +17,21 @@ bash setup.sh   # you may need to : chmod +x setup.sh before executing it
 # Password: password123456
 ```
 
-__Running apps:__
+
+## Running apps:
+
+__Running React frontend__
+In 1st terminal instance being in "django-rest-react-tasks-app/frontend":
 ```bash
-# In 1st terminal instance being in "django-rest-react-tasks-app/frontend":
 npm start
+```
 
-# In 2nd terminal instance being in "django-rest-react-tasks-app/backend":
+If you choose to automatically run Django API after setup via setup script, you don't have to do the next step.
+
+__Running Django API__
+In 2nd terminal instance being in "django-rest-react-tasks-app/backend":
+```bash
 python3 manage.py runserver
-
-# *** React app running on localhost port 3000, Django app on 8000 ***
 ```
 
 ### Preview:

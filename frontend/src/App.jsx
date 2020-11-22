@@ -125,8 +125,8 @@ export default class App extends Component {
         }
     
         return (
-          <div className="page-content">
-            <div>
+          <div id="app-container">
+            <div className="container centered-box">
                 <Nav
                     logged_in={this.state.logged_in}
                     display_form={this.display_form}
@@ -139,7 +139,7 @@ export default class App extends Component {
             :
             null}
             {this.state.logged_in ? 
-            <main>
+            <main className="container centered-box">
                 <TodoList 
                     logged_in={this.state.logged_in} 
                     handleFetchErrors={this.handleFetchErrors} 

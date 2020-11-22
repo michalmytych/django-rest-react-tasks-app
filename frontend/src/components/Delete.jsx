@@ -33,15 +33,12 @@ export default class Delete extends Component {
         return (
             <Fragment>
                 <div 
-                    onClick={this.handleGoBack}
-                    className="blurred-bg"></div>
-                <div className="overlay-box delete-box with-shadow">
+                    onClick={this.handleGoBack}></div>
+                <div>
                     <h3>Czy napewno chcesz usunąć to zadanie?</h3>
                     <button
-                        className="btn"
                         onClick={() => ( this.handleDelete(this.props.instance_id) )}>Tak</button>
                     <button 
-                        className="btn"
                         onClick={this.handleGoBack}>Anuluj</button>
                 </div>
             </Fragment>

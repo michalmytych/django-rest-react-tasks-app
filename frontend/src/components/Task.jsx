@@ -82,7 +82,6 @@ export default class Task extends Component {
                 {
                     (this.props.todo.description.length > 40) ?
                     <p 
-                        className="action-link"
                         onClick={this.viewFullDescrpt}>
                         {
                             this.state.full_descrpt_viewed ?
@@ -96,10 +95,9 @@ export default class Task extends Component {
                 }
                 {
                     this.props.todo.done ?
-                    <div className="btn inactive-btn">Wykonane</div>
+                    <div>Wykonane</div>
                     :
                     <DoneButton 
-                        className="btn"
                         instance_id={this.props.todo.id}
                         fetchToDos={this.props.fetchToDos}/>
                 }

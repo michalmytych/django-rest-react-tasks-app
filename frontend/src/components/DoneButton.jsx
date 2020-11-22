@@ -24,7 +24,6 @@ export default class DoneButton extends Component {
     render() {
         return (
             <div 
-                className="btn"
                 onClick={() => this.handleDone(this.props.instance_id)}>
                 Wykonaj
             </div>

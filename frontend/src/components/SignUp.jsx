@@ -28,9 +28,8 @@ export default class SignupForm extends React.Component {
     return (
       <Fragment>
         <div
-            onClick={this.handleFormQuit}  
-            className="blurred-bg"></div>
-        <div className="overlay-box with-shadow">
+            onClick={this.handleFormQuit}></div>
+        <div>
           <form onSubmit={e => this.props.handle_signup(e, this.state)}>
             <h4>Rejestracja</h4>
             <label htmlFor="username">Nazwa użytkownika:</label>
@@ -48,7 +47,6 @@ export default class SignupForm extends React.Component {
               onChange={this.handle_change}
             />
             <input
-              className="btn"
               type="submit"
               value="Zarejestruj" />
           </form>

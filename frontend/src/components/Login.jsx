@@ -26,35 +26,35 @@ export default class LoginForm extends React.Component {
 
   render() {
     return (
-      <Fragment>
+      <div className="auth-block container">
         <div
-            onClick={this.handleFormQuit} 
-            className="blurred-bg"></div>
-        <div className="overlay-box with-shadow">
+            onClick={this.handleFormQuit}></div>
+        <div>
           <form 
+            className="auth-form"
             onSubmit={e => this.props.handle_login(e, this.state)}>
             <h4>Logowanie</h4>
-            <label htmlFor="username">Nazwa użytkownika:</label>
             <input
+              className="auth-inpt text-inpt"
               type="text"
               name="username"
               value={this.state.username}
               onChange={this.handle_change}
             />
-            <label htmlFor="password">Hasło:</label>
             <input
+              className="auth-inpt text-inpt"
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.handle_change}
             />
             <input 
-              className="btn"
+              className="auth-inpt basic-btn login-btn"
               type="submit"
               value="Zaloguj" />
           </form>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

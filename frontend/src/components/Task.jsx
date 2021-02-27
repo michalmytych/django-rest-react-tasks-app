@@ -6,15 +6,11 @@ import DoneButton from './DoneButton';
 export default class Task extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            full_descrpt_viewed: false
-        };
+        this.state = { full_descrpt_viewed: false };
     }
 
     viewFullDescrpt = () => {
-        this.setState({
-            full_descrpt_viewed: !this.state.full_descrpt_viewed
-        });
+        this.setState({ full_descrpt_viewed: !this.state.full_descrpt_viewed });
     }
 
     formatDatetime = (iso_str) => {
@@ -51,20 +47,14 @@ export default class Task extends Component {
             <div key={this.props.todo.id}>
                 <h4
                     className={
-                        this.props.todo.done
-                        ?
-                        "completed-task"
-                        :
-                        null
+                        this.props.todo.done ? "completed-task" : null
                     }>
                     {this.props.todo.name}
                 </h4>
                 <p
                     className={
                         this.checkIfAfterDeadline(this.props.todo.deadline) && !this.props.todo.done ?
-                        "red-text"
-                        :
-                        null
+                        "red-text" : null
                     }>
                     Deadline: {this.formatDatetime(this.props.todo.deadline)}
                 </p>
@@ -73,10 +63,8 @@ export default class Task extends Component {
                         (this.props.todo.description.length > 40) ?
                             this.state.full_descrpt_viewed ?
                             this.props.todo.description
-                            :
-                            this.props.todo.description.slice(0, 40) + "..."
-                        :
-                        this.props.todo.description
+                            : this.props.todo.description.slice(0, 40) + "..."
+                        : this.props.todo.description
                     }
                 </p>
                 {
@@ -85,14 +73,10 @@ export default class Task extends Component {
                         className="action-link"
                         onClick={this.viewFullDescrpt}>
                         {
-                            this.state.full_descrpt_viewed ?
-                            "Mniej"
-                            :
-                            "Więcej"
+                            this.state.full_descrpt_viewed ? "Mniej" : "Więcej"
                         }  
                     </p>
-                    :
-                    null
+                    : null
                 }
                 {
                     this.props.todo.done ?

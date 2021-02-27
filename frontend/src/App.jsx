@@ -20,9 +20,7 @@ export default class App extends Component {
     }
 
     handleFetchErrors = (response) => {
-        if (!response.ok) {
-            throw Error(response.statusText);
-        }
+        if (!response.ok) throw Error(response.statusText);
         return response;
     }
 
@@ -46,9 +44,7 @@ export default class App extends Component {
         event.preventDefault();
         fetch('http://localhost:8000/token-auth/', {
             method: 'POST',
-            headers: {
-            'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
         .then(this.handleFetchErrors)
@@ -71,9 +67,7 @@ export default class App extends Component {
         event.preventDefault();
         fetch('http://localhost:8000/todo/users/', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         })
         .then(this.handleFetchErrors)
@@ -134,10 +128,7 @@ export default class App extends Component {
                 />
             </div>
             {
-            this.state.form_is_displayed ?
-            form
-            :
-            null}
+            this.state.form_is_displayed ? form : null}
             {this.state.logged_in ? 
             <main>
                 <TodoList 

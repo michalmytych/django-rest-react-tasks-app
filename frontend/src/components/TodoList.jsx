@@ -1,4 +1,4 @@
-import React, { Component, Fragment }  from 'react';
+import React, { Component }  from 'react';
 import { BrowserRouter as Router, Route, Link,} from "react-router-dom";
 import TodoForm from './TodoForm';
 import Filter from './Filter';
@@ -26,14 +26,8 @@ class TodoList extends Component {
         })
         .then(this.props.handleFetchErrors)
         .then(response => response.json() )
-        .then(json => {
-            this.setState({ 
-                todos: json 
-            });
-        })
-        .catch(error => {
-            console.log(error);
-        });
+        .then(data => { this.setState({ todos: data });})
+        .catch(error => { console.log(error); });
     }
 
     filterTodos = (todo, filter) => {
@@ -88,8 +82,7 @@ class TodoList extends Component {
                         setState={p=>{this.setState(p)}}
                         instance_id={this.state.deleting_instance_id}
                         handleDeleteView={this.handleDeleteView}/>
-                    :
-                    null
+                    : null
                 }
 
 

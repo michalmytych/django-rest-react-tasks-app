@@ -19,9 +19,7 @@ export default class SignupForm extends React.Component {
   };
 
   handleFormQuit = () => {
-    this.props.setParentState({
-      form_is_displayed: false
-    });
+    this.props.setParentState({ form_is_displayed: false });
   }
 
   render() {

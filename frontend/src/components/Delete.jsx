@@ -13,20 +13,14 @@ export default class Delete extends Component {
             },
         })
         .then(this.handleFetchErrors)
-        .then(                
-            this.props.handleDeleteView()
-        )
-        .catch(error => {
-            console.log(error);
-        });
+        .then(this.props.handleDeleteView())
+        .catch(error => { console.log(error); });
 
         this.props.handleDeleteView();
     }
 
     handleGoBack = () => {
-        this.props.setState({
-            deleting: false
-        });
+        this.props.setState({ deleting: false });
     }
 
     render() {

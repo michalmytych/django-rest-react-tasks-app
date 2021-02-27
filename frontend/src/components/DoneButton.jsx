@@ -10,15 +10,11 @@ export default class DoneButton extends Component {
             'Content-Type': 'application/json',
             Authorization: `JWT ${localStorage.getItem('token')}`
           },
-          body: JSON.stringify({
-              "done": true
-          })
+          body: JSON.stringify({ "done": true })
         })
         .then(this.props.handleFetchErrors)
         .then(this.props.fetchToDos)
-        .catch(error => {
-            console.log(error);
-        });
+        .catch(error => { console.log(error); });
     }
  
     render() {
